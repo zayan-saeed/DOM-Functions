@@ -83,7 +83,7 @@ sumEvenNumbers(2, 10)
 
 //Write a JavaScript program to remove items(clicking on a button) from a drop-down list.
 
-function remove(){
+function removeItem(){
     const selectcolor=document.getElementById('colorSelect')
     const selectedIndex=selectcolor.selectedIndex
 
@@ -103,17 +103,57 @@ function changeColor() {
 
 //Write a JavaScript function to get the values of First and Last names of the following form.
 
-
-let Fname=document.getElementById('Fname').getAttribute('value')
-let Lname=document.getElementById('Lname').getAttribute('value')
-console.log(Fname);
-console.log(Lname);
+document.getElementById('form1').addEventListener('submit', function display(){
+    event.preventDefault()
+    const Firstname=document.getElementById('Fname').value
+    const Lastname=document.getElementById('Lname').value
+    console.log(Firstname);
+    console.log(Lastname);
+})
 
 
 
 //Write a JavaScript program to display a random image (clicking on a button) from the following list.
 
-function Random_img(){
-    document.getElementById('displayimage').innerHTML='<img src="http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg&quot" width= "240px", height ="160px"> <img src="http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg&quot" width= "320px", height ="195px"> <img src="http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg&quot" width= "500px", height ="343px">'
+ // Array of image objects
+ const images = [
+    {
+        url: "http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg",
+        width: "240",
+        height: "160"
+    },
+    {
+        url: "http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg",
+        width: "320",
+        height: "195"
+    },
+    {
+        url: "http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg",
+        width: "500",
+        height: "343"
+    }
+    ];
 
-}
+    // Add event listener to the button
+    document.getElementById('randomImageBtn').addEventListener('click', displayRandomImage);
+
+    // Function to display a random image
+    function displayRandomImage() {
+        // Get a random index
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const randomImage = images[randomIndex];
+
+        // Create an image element and set its attributes
+        const imgElement = document.createElement('img');
+        imgElement.src = randomImage.url;
+        imgElement.width = randomImage.width;
+        imgElement.height = randomImage.height;
+
+        // Clear the image container and add the new image
+        const imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = ''; // Clear any existing images
+        imageContainer.appendChild(imgElement);
+    }
+
+
+
